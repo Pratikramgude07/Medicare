@@ -1,0 +1,100 @@
+{% include "header.html" %}
+{% load static %}
+<div class="container mt-5">
+    <div class="row">
+        <!-- UPI and Wallets Section -->
+        <div class="col-md-7">
+            <!-- UPI Section -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h4 class="card-title "><b> <u>Customer Details</u> </b></h4>
+
+                    <br>
+
+                    <div class="row align-items-center">
+                        <div class="col-sm-8 mb-2 mb-sm-0">
+                            <p><strong>Customer Name : </strong> {{request.user.username}}</p>
+                            <p><strong>Customer Email ID : </strong>{{request.user.email}}</p>
+                            <p><strong>Customer Mobile : </strong>{{request.user.first_name}}</p>
+                        </div>
+                        <a href="/makepayment" class="anchor"><button class="btn btn-dark">Make Payment /- ₹{{total}}</button></a>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wallets Section -->
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title "><b> <u>Order Summary</u> </b></h4>
+                    <div class="row ">
+
+                        {% for cart in carts %}
+
+                        <div class="col-md-2" width="100%">
+                            <img src="{{cart.pid.pimage.url}}" class="card-img" alt="LEGO Hogwarts"
+                                style="object-fit: contain;" height="200px">
+                        </div>
+
+                        <div class="col-md-10">
+                            <div class="card-body">
+                                <h5 class="card-title"> {{cart.pid.pname}}</h5>
+                                <p class="card-text">Ref:169928</p>
+                                <span class="card-text"><b>₹{{cart.pid.price}}</b></span>
+                                <br>
+                                <br>
+
+
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bill Summary Section -->
+        <div class="col-md-5">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title "><b> <u>Bill Summary</u> </b></h4>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            MRP
+                            <span>₹{{total}}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Discount
+                            <span>- ₹0.00</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Discounted Value
+                            <span>₹0.0</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Delivery Fee (per item)
+                            <span>₹100.00</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Handling Fee
+                            <span>₹0.00</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-footer d-flex justify-content-between align-items-center">
+                    <strong>Amount to be paid</strong>
+                    <strong>₹{{total}}</strong>
+                </div>
+                <div class="card-footer text-center bg-light">
+                    <span>₹9.68 Saved in this order</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% include "footer.html" %}

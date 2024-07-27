@@ -1,0 +1,74 @@
+{% include "header.html" %}
+{% load static %}
+
+<div class="container my-4">
+    <br><br>
+
+    <h2>Search results : </h2>
+    
+    {% if products|length < 1 %} <p>No search results</p>
+        Your search query : <b>{{query}}</b> did not match any documents. <br>
+        Suggestions:
+        <ul>
+            <li>Make sure that all words are spelled correctly.</li>
+            <li>Try more general keywords.</li>
+            <li> Try fewer keywords.</li>
+            <li> Try different keywords.</li>
+            </li>
+        </ul>
+
+
+        {% endif %}
+
+        <ul>
+
+            <br><br>
+            {% for product in products %}
+            <div class="col-md-3 ">
+                <a href="/product_details/{{product.id}}" class="text-decoration-none">
+                    <div class="card card-hover" style="width: 100%;height: 100%;">
+                        <img src="{{product.pimage.url}}" class="card-img-top" alt="Product 1" height="250px"
+                            style="object-fit: contain;">
+                        <div class="card-body">
+                            <h5 class="card-title">{{product.pname}}</h5>
+                            <p class="old-price">MRP : {{product.old_price}}</p>
+                            <p class="product-price">₹ {{product.price}} <span class="product-discount">(10%)</span></p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <br>
+            <br>
+            {% empty %}
+
+            <p>No results found.</p>
+
+            {% endfor %}
+
+</div>
+<br>
+<hr>
+<div class="container">
+    <h3>Shop More</h3>
+    <br>
+    <div class="row">
+        {% for product in productss %}
+        <div class="col-md-2">
+            <a href="/product_details/{{product.id}}" class="text-decoration-none">
+                <div class="card card-hover" style="width: 100%;height: 100%;">
+                    <img src="{{product.pimage.url}}" class="card-img-top" alt="Product 1" height="250px"
+                        style="object-fit: contain;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{product.pname}}</h5>
+                        <p class="old-price">MRP : <s>₹{{product.old_price}} </s> </p>
+                        <p class="product-price">₹ {{product.price}} <span class="product-discount">(10%)</span></p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+
+{% include "footer.html" %}

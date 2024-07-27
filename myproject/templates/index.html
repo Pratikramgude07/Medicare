@@ -1,0 +1,245 @@
+{% include "header.html" %}
+{% load static %}
+{% block title %}Index{% endblock %}
+
+
+<div class="container">
+  {% if err %}
+  <div class="alert text-center mx-auto " style="background-color: black;color: white; width: 250px;">
+      <svg xmlns="http://www.w3.org/2000/svg" style="color: rgb(4, 231, 4);" width="16" height="16" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+          <path d="m10.97 4.97-.02.022-3.473 4.425-2.093-2.094a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05"/>
+        </svg>
+      
+      {{err}}
+  </div>
+  {% endif %}
+
+
+  {% csrf_token %}
+  <div id="carouselExampleIndicators" class="carousel slide">
+
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+        aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+        aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+        aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <br>
+        <img src="{% static 'images/diagnostics_2024-01_1706088937_1948x800+(27).png' %}" class="d-block w-70"
+          style="object-fit: contain;" alt="..." height="500px" width="100%">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'images/banner2.jpg' %}" class="d-block w-70" style="object-fit: contain;" alt="..."
+          height="500px" width="100%">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'images/banner3.jpg' %}" class="d-block w-70" style="object-fit: contain;" alt="..."
+          height="500px" width="100%">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'images/banner2.jpg' %}" class="d-block w-70" style="object-fit: contain;" alt="..."
+          height="500px" width="100%">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+      data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+      data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h3 style="margin: 0 40px;">Filter by price</h3>
+      <hr>
+      <form action="/filterbyprice" method="get">
+        <div class="mb-3">
+          <label for="one" class="form-label">Min price</label>
+          <input type="number" class="form-control" name="min" id="one" aria-describedby="emailHelp">
+
+        </div>
+
+
+        <div class="mb-3">
+          <label for="two" class="form-label">Max price</label>
+          <input type="number" class="form-control" name="max" id="two" aria-describedby="emailHelp">
+        </div>
+
+        <button type="submit" class="btn btn-danger" value="search">Search </button>
+
+
+      </form>
+    </div>
+    <div class="col-md-6">
+
+      <h3 style="margin: 0 40px;">Sort by price</h3>
+      <hr>
+      <div class="dropdown">
+        <button class="btn btn-danger">Sort by</button>
+        <div class="dropdown-content">
+          <a href="/sortbyprice/1">Low to High</a>
+          <a href="/sortbyprice/0">High to Low</a>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+  <br>
+  <h2 class="title">Shop by Categories</h2>
+  <br>
+  <div class="shop-categories  " style=" background-color: rgb(255, 255, 255);">
+
+    <div style="margin: 0 70px;">
+      <a href="/shopbycategory/7" class="text-decoration-none" style="color: black;">
+        <div>
+          <img
+            src="https://cdn01.pharmeasy.in/dam/discovery/categoryImages/6d462f424a43372ea8b7b6f8ca13e052.png?f=png?dim=256x0">
+          <h5>Health condition</h5>
+
+        </div>
+      </a>
+
+      <a href="/shopbycategory/1" class="text-decoration-none" style="color: black;">
+        <div>
+          <img
+            src="https://cdn01.pharmeasy.in/dam/discovery/categoryImages/b4a3a67a59783e0ca738884c9acc8e7b.png?f=png?dim=256x0">
+          <h5>Personal care</h5>
+        </div>
+      </a>
+      <a href="/shopbycategory/2" class="text-decoration-none" style="color: black;">
+
+        <div>
+          <img
+            src="https://cdn01.pharmeasy.in/dam/discovery/categoryImages/62e6d7551ecf3a5da1d2336c41cc0549.png?f=png?dim=256x0">
+          <h5>Health food and drinks</h5>
+        </div>
+      </a>
+      <a href="/shopbycategory/3" class="text-decoration-none" style="color: black;">
+
+        <div>
+          <img
+            src="https://cdn01.pharmeasy.in/dam/discovery/categoryImages/8a45f5baa68e3b72ae631003faa97bdb.png?f=png?dim=256x0">
+          <h5>Beauty</h5>
+        </div>
+      </a>
+      <a href="/shopbycategory/4" class="text-decoration-none" style="color: black;">
+
+        <div>
+          <img
+            src="https://cdn01.pharmeasy.in/dam/discovery/categoryImages/ff5aaa03881e3016bf409f85b4e328aa.png?f=png?dim=256x0">
+          <h5>Skin care</h5>
+        </div>
+      </a>
+      <a href="/shopbycategory/5" class="text-decoration-none" style="color: black;">
+
+
+        <div>
+          <img
+            src="https://cdn01.pharmeasy.in/dam/discovery/categoryImages/68ae87e29f4a3abbb8ed69fe7ecf057c.png?f=png?dim=256x0">
+          <h5>Home care</h5>
+        </div>
+      </a>
+      <a href="/shopbycategory/6" class="text-decoration-none" style="color: black;">
+
+        <div>
+          <img
+            src="https://cdn01.pharmeasy.in/dam/discovery/categoryImages/4209e1d247cd30fca1f619786fa3e9c1.png?f=png?dim=256x0">
+          <h5>Must Have</h5>
+        </div>
+      </a>
+      <a href="/shopbycategory/8" class="text-decoration-none" style="color: black;">
+
+        <div>
+          <img
+            src="https://cdn01.pharmeasy.in/dam/discovery/categoryImages/4209e1d247cd30fca1f619786fa3e9c1.png?f=png?dim=256x0">
+          <h5>Sexsual wellness</h5>
+        </div>
+      </a>
+
+
+    </div>
+  </div>
+
+
+
+  <br>
+
+  <div class="col-md-12 ">
+
+    <div class="row ">
+      <h2>New Launches</h2>
+      <p>New wellness range just for you!</p>
+      {% for product in products %}
+      <div class="col-md-3 ">
+        <a href="/product_details/{{product.id}}" class="text-decoration-none">
+          <div class="card card-hover" style="width: 100%;height: 100%;">
+            <img src="{{product.pimage.url}}" class="card-img-top" alt="Product 1" height="250px"
+              style="object-fit: contain;">
+            <div class="card-body">
+              <h5 class="card-title">{{product.pname}}</h5>
+              <p class="old-price">MRP : ₹<s>{{product.old_price}}</s></p>
+              <p class="product-price">₹ {{product.price}} <span class="product-discount">(10%)</span></p>
+            </div>
+          </div>
+        </a>
+      </div>
+      <br>
+      <br>
+      {% endfor %}
+
+      <h2>Tranding Near you</h2>
+      <p>New wellness range just for you!</p>
+      {% for product in productss %}
+
+      <div class="col-md-3">
+        <a href="/product_details/{{product.id}}" class="text-decoration-none">
+          <div class="card card-hover" style="width: 100%;height: 100%;">
+            <img src="{{product.pimage.url}}" class="card-img-top" alt="Product 1" height="250px"
+              style="object-fit: contain;">
+            <div class="card-body">
+              <h5 class="card-title">{{product.pname}}</h5>
+              <p class="old-price">MRP : ₹<s>{{product.old_price}}</s></p>
+              <p class="product-price">₹ {{product.price}} <span class="product-discount">(10%)</span></p>
+            </div>
+          </div>
+        </a>
+      </div>
+      <br><br>
+      {% endfor %}
+
+      <h2>Frequentally use</h2>
+      <p>New wellness range just for you!</p>
+      {% for product in productsss %}
+      <div class="col-md-3">
+        <a href="/product_details/{{product.id}}" class="text-decoration-none">
+          <div class="card card-hover" style="width: 100%; height: 100%;">
+            <img src="{{product.pimage.url}}" class="card-img-top" alt="Product 1" height="250px"
+              style="object-fit: contain;">
+            <div class="card-body">
+              <h5 class="card-title">{{product.pname}}</h5>
+              <p class="old-price">MRP : ₹<s>{{product.old_price}}</s></p>
+              <p class="product-price">₹ {{product.price}} <span class="product-discount">(10%)</span></p>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      {% endfor %}
+
+    </div>
+
+  </div>
+</div>
+
+{% include "footer.html" %}
